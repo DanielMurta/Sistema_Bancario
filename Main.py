@@ -1,31 +1,45 @@
-import Conta
-class Pessoa:
-    def __init__(self, nome, idade):
-        self._nome = nome
-        self._idade = idade
+from Cliente import Cliente
+from Conta import ContaCorrente, ContaPoupanca
+from Banco import Banco
 
-    @property
-    def nome(self):
-        return self._nome
+Banco = Banco()
 
-    @property
-    def idade(self):
-        return self._idade
+Nome = str(input('Nome: '))
+Idade = int(input('Idade: '))
+Cliente1 = Cliente(Nome, Idade)
 
-class Cliente(Pessoa):
-    def __init__(self, nome, idade):
-        super().__init__(nome, idade)
-        self.conta = None
-
-    def inserir_conta(self, conta):
-        self.conta = conta
+print('INFORMAÇÕES DA CONTA:')
+Ag = int(input('Agência: '))
+Ct = int(input('Conta: '))
+Conta1 = ContaPoupanca(Ag, Ct, 0)
 
 
-Cliente1 = Cliente('Daniel', 22)
-Conta1 = Conta.Conta(888, 23, 0)
-Conta1.Deposito()
+Cliente1.inserir_conta(Conta1)
+Banco.InserirClientes(Cliente1)
+Banco.InserirConta(Conta1)
 
-
+while True:
+    print('[1] Depositar [2] Sacar [3] Saldo')
+    r = int(input('Opção: '))
+    if r == 0:
+        break
+    if r == 1:
+        if Banco.autenticar(Cliente1):
+            Deposito = float(input('Valor do Depósito: '))
+            Cliente1.conta.Depositar(Deposito)
+        else:
+            print('Cliente não autenticado')
+    if r == 2:
+        if Banco.autenticar(Cliente1):
+            Saque = float(input('Valor do Saque: '))
+            Cliente1.conta.sacar(Saque)
+        else:
+            print('Cliente não autenticado')
+    if r == 3:
+        if Banco.autenticar(Cliente1):
+            Cliente1.conta.Informacoes()
+        else:
+            print('Cliente não autenticado')
 
 
 

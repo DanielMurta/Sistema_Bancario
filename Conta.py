@@ -8,11 +8,10 @@ class Conta(ABC):
 
     def Depositar(self, valor):
         self.saldo += valor
-        self.Informacoes()
 
     def Informacoes(self):
         print(f'Agência: {self.agencia}')
-        print(f'\nConta: {self.n_conta}')
+        print(f'Conta: {self.n_conta}')
         print(f'Saldo: {self.saldo}')
 
     @abstractmethod
@@ -26,7 +25,6 @@ class ContaPoupanca(Conta):
             return
 
         self.saldo -= valor
-        self.Informacoes()
 
 class ContaCorrente(Conta):
     def __init__(self, agencia, conta, saldo, limite=100):
@@ -38,9 +36,7 @@ class ContaCorrente(Conta):
             print('Saldo insuficiente')
             return
 
-
-
-
+        self.saldo -= valor
 
 
 
