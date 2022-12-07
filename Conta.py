@@ -1,6 +1,6 @@
 from abc import ABC, abstractmethod
 
-class Conta(ABC):
+class Conta(ABC, ):
     def __init__(self, agencia, n_conta, saldo):
         self.agencia = agencia
         self.n_conta = n_conta
