@@ -1,6 +1,5 @@
 from Cliente import Cliente
 from Conta import ContaCorrente, ContaPoupanca
-from Banco import Banco
 import criar_conta
 
 while True:
@@ -9,15 +8,11 @@ while True:
     resp = int(input('Opção: '))
     if resp == 1:
         print('-----LOGIN-----')
-        agencia = int(input('Agência: '))
+        agencia = str(input('Agência: '))
         senha = int(input('Senha: '))
-        Banco.autenticar(agencia, senha)
+        criar_conta.login(agencia, senha)
     if resp == 2:
         criar_conta.criar_conta()
-
-
-
-
 
 while True:
     print('[1] Depositar [2] Sacar [3] Saldo')

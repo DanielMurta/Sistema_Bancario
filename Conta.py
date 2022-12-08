@@ -1,9 +1,9 @@
 from abc import ABC, abstractmethod
 
-class Conta(ABC, ):
-    def __init__(self, agencia, n_conta, saldo):
+class Conta(ABC):
+    def __init__(self, agencia, senha, saldo):
         self.agencia = agencia
-        self.n_conta = n_conta
+        self.senha = senha
         self.saldo = saldo
 
     def Depositar(self, valor):
@@ -11,7 +11,6 @@ class Conta(ABC, ):
 
     def Informacoes(self):
         print(f'Agência: {self.agencia}')
-        print(f'Conta: {self.n_conta}')
         print(f'Saldo: {self.saldo}')
 
     @abstractmethod
