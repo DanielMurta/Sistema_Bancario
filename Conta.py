@@ -1,15 +1,17 @@
 from abc import ABC, abstractmethod
 
 class Conta(ABC):
-    def __init__(self, agencia, senha, saldo):
+    def __init__(self, agencia, senha, cliente, saldo):
         self.agencia = agencia
         self.senha = senha
         self.saldo = saldo
+        self.cliente = cliente
 
     def Depositar(self, valor):
         self.saldo += valor
 
     def Informacoes(self):
+        print(f'Nome: {self.cliente.nome, self.cliente.sobrenome}')
         print(f'Agência: {self.agencia}')
         print(f'Saldo: {self.saldo}')
 

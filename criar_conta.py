@@ -1,4 +1,6 @@
 import random
+from Cliente import Cliente
+from Conta import Conta
 
 def criar_conta():
     nome = str(input('Nome: '))
@@ -17,8 +19,8 @@ def criar_conta():
     agencia = f'{num}-{dig}'
     saldo = 0
     with open(f'{agencia}.txt', 'w') as arq:
-        arq.write(f'Agência: {agencia} \n{senha} \nNome: {nome.capitalize()} \nSobrenome: {sobrenome} '
-                  f'\nCPF: {cpf} \nSaldo: {saldo}')
+        arq.write(f'{agencia} \n{senha} \n{nome.capitalize()} \n{sobrenome.capitalize()} '
+                  f'\n{cpf} \n{saldo}')
     with open(f'{agencia}.txt', 'r') as arq:
         mensagem = arq.readlines()
         print(mensagem[0])
@@ -31,7 +33,7 @@ def login(agencia, senha):
     with open(f'{agencia}.txt', 'r') as arq:
         mensagem = arq.readlines()
         if int(mensagem[1]) == senha:
-            print('Acesso concluído!')
+            return print('Acesso concluído!')
         else:
             print('Senha incorreta')
 
