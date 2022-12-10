@@ -2,7 +2,6 @@ from Cliente import Cliente
 from Conta import ContaCorrente, ContaPoupanca
 import criar_conta
 import PySimpleGUI as sg
-from telas import *
 
 sg.theme('DarkRed1')
 
@@ -84,6 +83,7 @@ while True:
             senha = int(values['senha'])
             repeticao_senha = int(values['repeticao_senha'])
             criar_conta.criar_conta(nome, sobrenome, cpf, senha, repeticao_senha)
+
 
 
 

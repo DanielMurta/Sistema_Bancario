@@ -1,6 +1,7 @@
 import random
 from Cliente import Cliente
 from Conta import Conta
+import PySimpleGUI as sg
 
 def criar_conta(nome, sobrenome, cpf, senha, repeticao_senha):
     while True:
