@@ -2,12 +2,7 @@ import random
 from Cliente import Cliente
 from Conta import Conta
 
-def criar_conta():
-    nome = str(input('Nome: '))
-    sobrenome = str(input('Sobrenome: '))
-    cpf = str(input('CPF: '))
-    senha = str(input('Senha (6 digitos): '))
-    repeticao_senha = str(input('Digite a senha novamente: '))
+def criar_conta(nome, sobrenome, cpf, senha, repeticao_senha):
     while True:
         if repeticao_senha == senha:
             break
