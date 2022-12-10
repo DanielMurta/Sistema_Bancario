@@ -11,7 +11,7 @@ class Conta(ABC):
         self.saldo += valor
 
     def Informacoes(self):
-        print(f'Nome: {self.cliente.nome, self.cliente.sobrenome}')
+        print(f'Nome: {self.cliente.nome}')
         print(f'Agência: {self.agencia}')
         print(f'Saldo: {self.saldo}')
 

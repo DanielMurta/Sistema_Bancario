@@ -19,14 +19,14 @@ def criar_conta():
     agencia = f'{num}-{dig}'
     saldo = 0
     with open(f'{agencia}.txt', 'w') as arq:
-        arq.write(f'{agencia} \n{senha} \n{nome.capitalize()} \n{sobrenome.capitalize()} '
-                  f'\n{cpf} \n{saldo}')
+        arq.write(f'{agencia} \n{senha} \n{nome.capitalize()} \n{sobrenome} \n{cpf}')
     with open(f'{agencia}.txt', 'r') as arq:
         mensagem = arq.readlines()
-        print(mensagem[0])
-        print(mensagem[2])
-        print(mensagem[1])
-    print('\033[32m[Cadastro Concluído]\033[m')
+        print('-- Abertura da conta com sucesso! --')
+        print(f'Agência: {mensagem[0]}')
+        print(f'Nome: {mensagem[2]}')
+        print(f'Senha: {mensagem[1]}')
+    print('\033[32m[Faça o LOGIN e comece a usar sua conta!]\033[m')
 
 
 def login(agencia, senha):

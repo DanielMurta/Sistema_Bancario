@@ -1,6 +1,20 @@
 from Cliente import Cliente
 from Conta import ContaCorrente, ContaPoupanca
 import criar_conta
+import PySimpleGUI as sg
+from telas import *
+
+sg.theme('DarkRed1')
+layout = [[sg.Text("Bem vindo ao Banco Bradisco")],
+          [sg.Frame('Login', [[sg.T(s=30)]])]]
+
+
+window = sg.Window('Caixa Bradisco', layout)
+
+while True:
+    event, values = window.read()
+    if event == sg.WIN_CLOSED:
+        break
 
 while True:
     print('[1] LOGIN')
