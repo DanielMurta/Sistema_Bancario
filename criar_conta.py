@@ -29,9 +29,12 @@ def login(agencia, senha):
     with open(f'{agencia}.txt', 'r') as arq:
         mensagem = arq.readlines()
         if int(mensagem[1]) == senha:
-            return print('Acesso concluído!')
+            with open(f'{agencia}.txt', 'r') as arquivo:
+                mensagem = arquivo.readlines()
+            return mensagem
         else:
-            print('Senha incorreta')
+            sg.popup('Senha ou Agência inválidos!')
+            return False
 
 
 
