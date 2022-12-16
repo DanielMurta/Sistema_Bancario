@@ -18,11 +18,7 @@ def criar_conta(nome, sobrenome, cpf, senha, repeticao_senha):
         arq.write(f'{agencia} \n{senha} \n{nome.capitalize()} \n{sobrenome} \n{cpf}')
     with open(f'{agencia}.txt', 'r') as arq:
         mensagem = arq.readlines()
-        print('-- Abertura da conta com sucesso! --')
-        print(f'Agência: {mensagem[0]}')
-        print(f'Nome: {mensagem[2]}')
-        print(f'Senha: {mensagem[1]}')
-    print('\033[32m[Faça o LOGIN e comece a usar sua conta!]\033[m')
+
 
 
 def login(agencia, senha):

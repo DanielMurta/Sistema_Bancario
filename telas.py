@@ -17,20 +17,20 @@ def tela_login():
         [sg.Button('Criar conta')]
     ]
 
-    return sg.Window('Caixa Brazesco', layout, size=(400, 300), element_justification='center')
+    return sg.Window('Caixa Brazesco', layout, size=(400, 300), element_justification='center', finalize=True)
 
 
 def tela_principal():
     layout_menu = [
         [sg.Text("Banco Brazesco", font='arial 15')],
     ]
-    return sg.Window('Menu caixa', layout_menu)
+    return sg.Window('Menu caixa', layout_menu, finalize=True)
 
 
 def tela_criar_conta():
     sg.theme('DarkRed1')
-    layout_criarconta = [
-        [sg.Text("Crie sua conta", font='arial 15')],
+
+    frame_layout = [
         [sg.Text('Nome')],
         [sg.InputText(key='nome', size=20)],
         [sg.Text('Sobrenome')],
@@ -41,6 +41,14 @@ def tela_criar_conta():
         [sg.InputText(key='senha', size=20)],
         [sg.Text('Digite a senha novamente')],
         [sg.InputText(key='repeticao_senha', size=20)],
-        [sg.Button('Criar Conta'), sg.Button('Cancelar')]
     ]
-    window_criarconta = sg.Window('Criar conta', layout_criarconta, size=(300, 400), element_justification='center')
+
+    layout_criarconta = [
+        [sg.Text("Crie sua conta", font='arial 15')],
+        [sg.Frame('Login', frame_layout)],
+        [sg.Button('Criar Conta'), sg.Button('Cancelar')],
+        [sg.Text('', key='msg_criar_conta')]
+
+    ]
+    window_criarconta = sg.Window('Criar conta', layout_criarconta, size=(400, 400), element_justification='center',
+                                  finalize=True)
