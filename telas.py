@@ -24,10 +24,25 @@ def tela_login():
 def tela_principal(cliente, conta):
     sg.theme('DarkRed1')
 
+    coluna1 = [
+        [sg.Button("Depositar", font='arial 13')]
+    ]
+
+    coluna2 = [
+        [sg.Text(f'Olá, {cliente.nome}{cliente.sobrenome}', font='arial 11')],
+        [sg.Text(f'Conta: {conta.agencia}', font='arial 11')],
+        [sg.Text('O que deseja fazer?', font='arial 11')]
+    ]
+
+    coluna3 = [
+        [sg.Button('   Sacar   ', font='arial 13')]
+    ]
+
     layout_menu = [
-        [sg.Button("Depositar", font='arial 13'),sg.Text(f'Olá, {cliente.nome}'), sg.Button('   Sacar   ', font='arial 13')],
-        [sg.Text(f'Conta: {conta.agencia}')],
-        [sg.Button('Exibir Extrato', font='arial 13')]
+        [sg.Column(layout=coluna1), sg.Column(layout=coluna2, pad=(10, 10)), sg.Column(layout=coluna3)],
+        [sg.Button('Exibir Extrato', font='arial 13')],
+        [sg.Output(key='extrato', size=(40, 4), font='arial 13')],
+        [sg.Button('Sair', font='arial 13')]
     ]
     return sg.Window('Menu caixa', layout_menu, size=(400, 300), element_justification='Center', finalize=True)
 
@@ -49,7 +64,7 @@ def tela_criar_conta():
     ]
 
     layout_criarconta = [
-        [sg.Text("Crie sua conta", font='arial 15')],
+        [sg.Text("Crie sua conta", font='arial 13')],
         [sg.Frame('Login', frame_layout)],
         [sg.Button('Criar Conta'), sg.Button('Cancelar')],
         [sg.Text('', key='msg_criar_conta')]

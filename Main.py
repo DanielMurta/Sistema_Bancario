@@ -6,12 +6,15 @@ import criar_conta
 tela_login()
 while True:
     window, event, values = sg.read_all_windows()
+    agencia = f'{values["agencia"]}-{values["agencia2"]}'
+    senha = (values['senha'])
+
     if event == sg.WIN_CLOSED:
         break
-    agencia = f'{values["agencia"]}-{values["agencia2"]}'
-    senha = int(values['senha'])
-    if agencia != '' and senha != '':
-        if event == 'Login':
+    if event == 'Login':
+        if agencia == '' or senha == '':
+            sg.Popup('Preencha todos os campos!', title='Erro')
+        else:
             log = criar_conta.login(agencia, senha)
             if log:
                 cl = Cliente.Cliente(log[2], log[3], log[4], log[1], log[1])
@@ -20,9 +23,22 @@ while True:
                 while True:
                     window, event, values = sg.read_all_windows()
                     if event == sg.WIN_CLOSED:
+                        exit()
+                    if event == 'Sair':
+                        window.close()
+                        tela_login()
                         break
-    else:
-        sg.Popup('Preencha todos os campos!', title='Erro')
+                    if event == 'Exibir Extrato':
+                        window['extrato'].update(f'Nome: {cl.nome}'
+                                                 f'\nConta: {ct.agencia}'
+                                                 f'\nSaldo: R${ct.saldo:.2f}')
+
+                    if event == 'Depositar':
+                        pass
+
+
+            elif not log:
+                sg.Popup('Senha ou Agência inválidos!', title='Erro')
 
 
     if event == 'Criar conta':
@@ -38,7 +54,7 @@ while True:
                 break
             nome = values['nome']
             sobrenome = values['sobrenome']
-            cpf = values['sobrenome']
+            cpf = values['cpf']
             senha = values['senha']
             repeticao_senha = values['repeticao_senha']
             if senha != '' and repeticao_senha != '':
