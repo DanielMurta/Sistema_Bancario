@@ -1,4 +1,5 @@
 import PySimpleGUI as sg
+import Cliente
 def tela_login():
     sg.theme('DarkRed1')
 
@@ -20,11 +21,15 @@ def tela_login():
     return sg.Window('Caixa Brazesco', layout, size=(400, 300), element_justification='center', finalize=True)
 
 
-def tela_principal():
+def tela_principal(cliente, conta):
+    sg.theme('DarkRed1')
+
     layout_menu = [
-        [sg.Text("Banco Brazesco", font='arial 15')],
+        [sg.Button("Depositar", font='arial 13'),sg.Text(f'Olá, {cliente.nome}'), sg.Button('   Sacar   ', font='arial 13')],
+        [sg.Text(f'Conta: {conta.agencia}')],
+        [sg.Button('Exibir Extrato', font='arial 13')]
     ]
-    return sg.Window('Menu caixa', layout_menu, finalize=True)
+    return sg.Window('Menu caixa', layout_menu, size=(400, 300), element_justification='Center', finalize=True)
 
 
 def tela_criar_conta():

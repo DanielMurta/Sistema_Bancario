@@ -21,6 +21,7 @@ def criar_conta(nome, sobrenome, cpf, senha, repeticao_senha):
 
 
 
+
 def login(agencia, senha):
     with open(f'{agencia}.txt', 'r') as arq:
         mensagem = arq.readlines()

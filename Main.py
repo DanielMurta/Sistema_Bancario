@@ -9,15 +9,14 @@ while True:
     if event == sg.WIN_CLOSED:
         break
     agencia = f'{values["agencia"]}-{values["agencia2"]}'
-    senha = (values['senha'])
+    senha = int(values['senha'])
     if agencia != '' and senha != '':
         if event == 'Login':
             log = criar_conta.login(agencia, senha)
             if log:
-                cl = Cliente(log[2], log[3], log[4], log[1], log[1])
+                cl = Cliente.Cliente(log[2], log[3], log[4], log[1], log[1])
                 ct = ContaPoupanca(agencia, senha, cl, saldo=0)
-                sg.theme('DarkRed1')
-                tela_principal()
+                tela_principal(cl, ct)
                 while True:
                     window, event, values = sg.read_all_windows()
                     if event == sg.WIN_CLOSED:
