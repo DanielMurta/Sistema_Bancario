@@ -19,6 +19,7 @@ while True:
             if log:
                 cl = Cliente.Cliente(log[2], log[3], log[4], log[1], log[1])
                 ct = ContaPoupanca(agencia, senha, cl, saldo=0)
+                window.close()
                 tela_principal(cl, ct)
                 while True:
                     window, event, values = sg.read_all_windows()
@@ -34,7 +35,53 @@ while True:
                                                  f'\nSaldo: R${ct.saldo:.2f}')
 
                     if event == 'Depositar':
-                        pass
+                        window.close()
+                        tela_depositar()
+                        while True:
+                            window, event, values = sg.read_all_windows()
+                            valor_deposito = values['valor_deposito']
+                            if event == sg.WIN_CLOSED:
+                                exit()
+                            if event == 'Sair':
+                                window.close()
+                                tela_principal(cl, ct)
+                                break
+
+                            if event == 'Cancelar':
+                                window['valor_deposito'].update('')
+
+                            if event == 'Confirmar':
+                                if valor_deposito == '':
+                                    sg.Popup('Preencha todos os campos!', title='Erro')
+                                else:
+                                    ct.Depositar(float(valor_deposito))
+                                    sg.Popup('DEPÓSITO CONCLUÍDO!')
+                                    window['valor_deposito'].update('')
+
+                    if event == '   Sacar   ':
+                        window.close()
+                        tela_sacar()
+                        while True:
+                            window, event, values = sg.read_all_windows()
+                            valor_saque = values['valor_saque']
+                            if event == sg.WIN_CLOSED:
+                                exit()
+                            if event == 'Sair':
+                                window.close()
+                                tela_principal(cl, ct)
+                                break
+
+                            if event == 'Cancelar':
+                                window['valor_saque'].update('')
+
+                            if event == 'Confirmar':
+                                if valor_saque == '':
+                                    sg.Popup('Preencha todos os campos!', title='Erro')
+                                else:
+                                    ct.sacar(float(valor_saque))
+                                    sg.Popup('SAQUE CONCLUÍDO!'
+                                             '\nRetire o Dinheiro')
+                                    window['valor_saque'].update('')
 
 
             elif not log:
@@ -60,7 +107,6 @@ while True:
             if senha != '' and repeticao_senha != '':
                 if senha == repeticao_senha and event == 'Criar Conta':
                     criar_conta.criar_conta(nome, sobrenome, cpf, senha, repeticao_senha)
-                    sg.Popup('Conta criada com sucesso!', font='arial 13', title='Erro')
                     window['nome'].update('')
                     window['sobrenome'].update('')
                     window['cpf'].update('')

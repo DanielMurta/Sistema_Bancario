@@ -10,11 +10,6 @@ class Conta(ABC):
     def Depositar(self, valor):
         self.saldo += valor
 
-    def Informacoes(self):
-        print(f'Nome: {self.cliente.nome}')
-        print(f'Agência: {self.agencia}')
-        print(f'Saldo: {self.saldo}')
-
     @abstractmethod
     def sacar(self, valor): pass
 

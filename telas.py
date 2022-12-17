@@ -1,5 +1,7 @@
 import PySimpleGUI as sg
 import Cliente
+
+
 def tela_login():
     sg.theme('DarkRed1')
 
@@ -72,3 +74,41 @@ def tela_criar_conta():
     ]
     window_criarconta = sg.Window('Criar conta', layout_criarconta, size=(400, 400), element_justification='center',
                                   finalize=True)
+
+
+def tela_depositar():
+    sg.theme('DarkRed1')
+
+    frame_layout = [
+        [sg.Text('Valor:', font='arial 13')],
+        [sg.InputText('', key='valor_deposito', size=19)],
+        [sg.Button('Confirmar', font='arial 10'), sg.Button('Cancelar', font='arial 10')]
+    ]
+
+    layout_deposito = [
+        [sg.Text('Depósito Brazesco', font='arial 13')],
+        [sg.Frame('-', frame_layout)],
+        [sg.Button('Sair', font='arial 10')]
+    ]
+
+    window_deposito = sg.Window('Depósito', layout_deposito, size=(300, 200), element_justification='Center',
+                                finalize=True)
+
+
+def tela_sacar():
+    sg.theme('DarkRed1')
+
+    frame_layout = [
+        [sg.Text('Valor:', font='arial 13')],
+        [sg.InputText('', key='valor_saque', size=19)],
+        [sg.Button('Confirmar', font='arial 10'), sg.Button('Cancelar', font='arial 10')]
+    ]
+
+    layout_deposito = [
+        [sg.Text('Saque Brazesco', font='arial 13')],
+        [sg.Frame('-', frame_layout)],
+        [sg.Button('Sair', font='arial 10')]
+    ]
+
+    window_saque = sg.Window('Saque', layout_deposito, size=(300, 200), element_justification='Center',
+                             finalize=True)
