@@ -84,8 +84,6 @@ while True:
                                     window['valor_saque'].update('')
 
 
-            elif not log:
-                sg.Popup('Senha ou Agência inválidos!', title='Erro')
 
 
     if event == 'Criar conta':

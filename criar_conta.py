@@ -25,14 +25,22 @@ def criar_conta(nome, sobrenome, cpf, senha, repeticao_senha):
 
 
 def login(agencia, senha):
-    with open(f'{agencia}.txt', 'r') as arq:
-        mensagem = arq.readlines()
-        if int(mensagem[1]) == int(senha):
-            with open(f'{agencia}.txt', 'r') as arquivo:
-                mensagem = arquivo.readlines()
-            return mensagem
+    try:
+        with open(f'{agencia}.txt', 'r') as arq:
+            mensagem = arq.readlines()
+            if int(mensagem[1]) == int(senha):
+                with open(f'{agencia}.txt', 'r') as arquivo:
+                    mensagem = arquivo.readlines()
+                return mensagem
+    except:
+        sg.Popup('ERRO AO TENTAR ACESSAR A CONTA!'
+                 '\nAgência inválida.', font='arial 13')
 
+    else:
+        sg.Popup('SENHA INVÁLIDA!', title='Erro')
         return False
+
+
 
 
 
