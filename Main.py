@@ -30,7 +30,8 @@ while True:
                         tela_login()
                         break
                     if event == 'Exibir Extrato':
-                        window['extrato'].update(f'Nome: {cl.nome}'
+                        nome_completo = (cl.nome+' ' + cl.sobrenome)
+                        window['extrato'].update(f'Nome: {nome_completo}'
                                                  f'\nConta: {ct.agencia}'
                                                  f'\nSaldo: R${ct.saldo:.2f}')
 
@@ -103,17 +104,20 @@ while True:
             senha = values['senha']
             repeticao_senha = values['repeticao_senha']
             if senha != '' and repeticao_senha != '':
-                if senha == repeticao_senha and event == 'Criar Conta':
-                    criar_conta.criar_conta(nome, sobrenome, cpf, senha, repeticao_senha)
-                    window['nome'].update('')
-                    window['sobrenome'].update('')
-                    window['cpf'].update('')
-                    window['senha'].update('')
-                    window['repeticao_senha'].update('')
+                if int(len(senha)) == 6:
+                    if senha == repeticao_senha and event == 'Criar Conta':
+                        criar_conta.criar_conta(nome, sobrenome, cpf, senha, repeticao_senha)
+                        window['nome'].update('')
+                        window['sobrenome'].update('')
+                        window['cpf'].update('')
+                        window['senha'].update('')
+                        window['repeticao_senha'].update('')
+                    else:
+                        sg.Popup('As senhas precisam ser iguais!', font='arial 13', title='Erro')
                 else:
-                    sg.Popup('As senhas precisam ser iguais!', title='Erro')
+                    sg.Popup('As senha precisar conter 6 dígitos(Números)!', font='arial 13', title='Erro')
             elif nome == '' or sobrenome == '' or cpf == '' or senha == '' or repeticao_senha == '':
-                sg.Popup('Verifique se todos os campos estão preenchidos.', title='Erro')
+                sg.Popup('Verifique se todos os campos estão preenchidos.', font='arial 13', title='Erro')
 
 
 
