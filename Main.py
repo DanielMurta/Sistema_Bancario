@@ -1,5 +1,5 @@
 # Importando classe Cliente
-from classeCliente import Cliente
+from Cliente import Cliente
 # Importando classe Conta
 from Conta import ContaPoupanca
 # Importando Telas
