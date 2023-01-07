@@ -1,7 +1,12 @@
-from Cliente import Cliente
-from Conta import ContaCorrente, ContaPoupanca
+# Importando classe Cliente
+from classeCliente import Cliente
+# Importando classe Conta
+from Conta import ContaPoupanca
+# Importando Telas
 from telas import *
+# Importando função para login e criação de conta
 import criar_conta
+
 
 tela_login()
 while True:
@@ -17,7 +22,7 @@ while True:
         else:
             log = criar_conta.login(agencia, senha)
             if log:
-                cl = Cliente.Cliente(log[2], log[3], log[4], log[1], log[1])
+                cl = Cliente(log[2], log[3], log[4], log[1], log[1])
                 ct = ContaPoupanca(agencia, senha, cl, saldo=0)
                 window.close()
                 tela_principal(cl, ct)
@@ -30,8 +35,7 @@ while True:
                         tela_login()
                         break
                     if event == 'Exibir Extrato':
-                        nome_completo = (cl.nome+' ' + cl.sobrenome)
-                        window['extrato'].update(f'Nome: {nome_completo}'
+                        window['extrato'].update(f'Nome: {cl.nome, cl.sobrenome}'
                                                  f'\nConta: {ct.agencia}'
                                                  f'\nSaldo: R${ct.saldo:.2f}')
 

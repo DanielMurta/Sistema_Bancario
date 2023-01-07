@@ -1,10 +1,13 @@
+# Importando Módulo para a criação das interfaces
 import PySimpleGUI as sg
-import Cliente
 
 
+# Função p/ criar interface da tela de Login
 def tela_login():
+    # Definindo o tema
     sg.theme('DarkRed1')
 
+    # Definindo layout
     frame_layout = [
         [sg.T('Agência', font='arial 16')],
         [sg.InputText(key='agencia', font='arial 16', size=18), sg.T('-'), sg.InputText(key='agencia2', font='arial 16',
@@ -21,12 +24,16 @@ def tela_login():
         [sg.Button('Criar conta', font='arial 16')]
     ]
 
+    # Retornando A janela
     return sg.Window('Caixa Brazesco', layout, size=(500, 400), element_justification='center', finalize=True)
 
 
+# Função p/ criar interface da tela principal
 def tela_principal(cliente, conta):
+    # Definindo o tema
     sg.theme('DarkRed1')
 
+    # Definindo layout
     coluna1 = [
         [sg.Button("Depositar", font='arial 16')]
     ]
@@ -47,12 +54,17 @@ def tela_principal(cliente, conta):
         [sg.Output(key='extrato', size=(40, 4), font='arial 16')],
         [sg.Button('Sair', font='arial 16')]
     ]
+
+    # Retornando A janela
     return sg.Window('Menu caixa', layout_menu, size=(500, 400), element_justification='Center', finalize=True)
 
 
+# Função p/ criar interface da tela de criar conta
 def tela_criar_conta():
+    # Definindo o tema
     sg.theme('DarkRed1')
 
+    # Definindo layout
     frame_layout = [
         [sg.Text('Nome', font='arial 16')],
         [sg.InputText(key='nome', font='arial 16', size=35)],
@@ -73,13 +85,17 @@ def tela_criar_conta():
         [sg.Text('', key='msg_criar_conta')]
 
     ]
-    window_criarconta = sg.Window('Criar conta', layout_criarconta, size=(500, 500), element_justification='center',
-                                  finalize=True)
+
+    # Retornando A janela
+    return sg.Window('Criar conta', layout_criarconta, size=(500, 500), element_justification='center', finalize=True)
 
 
+# Função p/ criar interface da tela de depósito
 def tela_depositar():
+    # Definindo o tema
     sg.theme('DarkRed1')
 
+    # Definindo layout
     frame_layout = [
         [sg.Text('Valor:', font='arial 16')],
         [sg.InputText('', key='valor_deposito', font='arial 16', size=18)],
@@ -92,13 +108,16 @@ def tela_depositar():
         [sg.Button('Sair', font='arial 16')]
     ]
 
-    window_deposito = sg.Window('Depósito', layout_deposito, size=(400, 300), element_justification='Center',
-                                finalize=True)
+    # Retornando A janela
+    return sg.Window('Depósito', layout_deposito, size=(400, 300), element_justification='Center', finalize=True)
 
 
+# Função p/ criar interface da tela de sacar
 def tela_sacar():
+    # Definindo o tema
     sg.theme('DarkRed1')
 
+    # Definindo layout
     frame_layout = [
         [sg.Text('Valor:', font='arial 16')],
         [sg.InputText('', key='valor_saque', font='arial 16', size=18)],
@@ -111,5 +130,6 @@ def tela_sacar():
         [sg.Button('Sair', font='arial 16')]
     ]
 
-    window_saque = sg.Window('Saque', layout_deposito, size=(400, 300), element_justification='Center',
+    # Retornando A janela
+    return sg.Window('Saque', layout_deposito, size=(400, 300), element_justification='Center',
                              finalize=True)
