@@ -83,10 +83,14 @@ while True:
                                     sg.Popup('Preencha todos os campos!', title='Erro')
 
                                 else:
-                                    # Caso não esteja vazio, a função depositar da classe conta é chamada
-                                    ct.Depositar(float(valor_deposito))
-                                    sg.Popup('DEPÓSITO CONCLUÍDO!')
-                                    window['valor_deposito'].update('')
+                                    # verificando se o campo contém apenas números
+                                    if valor_deposito.isdigit():
+                                        # Caso não esteja vazio, a função depositar da classe conta é chamada
+                                        ct.Depositar(float(valor_deposito))
+                                        sg.Popup('DEPÓSITO CONCLUÍDO!')
+                                        window['valor_deposito'].update('')
+                                    else:
+                                        sg.Popup('DIGITE APENAS NÚMEROS')
 
                     # Fazendo Saque
                     if event == '   Sacar   ':
@@ -118,35 +122,48 @@ while True:
                                 if valor_saque == '':
                                     sg.Popup('Preencha todos os campos!', title='Erro')
                                 else:
-                                    # Caso não esteja vazio, a função sacar da classe conta é chamada
-                                    ct.sacar(float(valor_saque))
-                                    sg.Popup('SAQUE CONCLUÍDO!'
-                                             '\nRetire o Dinheiro')
-                                    window['valor_saque'].update('')
+                                    # verificando se o campo contém apenas números
+                                    if valor_saque.isdigit():
+                                        # Caso não esteja vazio, a função sacar da classe conta é chamada
+                                        ct.sacar(float(valor_saque))
+                                        sg.Popup('SAQUE CONCLUÍDO!'
+                                                 '\nRetire o Dinheiro')
+                                        window['valor_saque'].update('')
+                                    else:
+                                        sg.Popup('DIGITE APENAS NÚMEROS')
 
 
-
-
+    # Criando Conta
     if event == 'Criar conta':
+        # Fechando tela de login
         window.close()
+        # Abrindo tela para criar conta
         tela_criar_conta()
         while True:
             window, event, values = sg.read_all_windows()
             if event == sg.WIN_CLOSED:
                 exit()
+            # Fechando tela para criar conta
             if event == 'Cancelar':
                 window.close()
+                # Abrindo tela login
                 tela_login()
                 break
+            # Armazenando os dados dos campos nas variávels
             nome = values['nome']
             sobrenome = values['sobrenome']
             cpf = values['cpf']
             senha = values['senha']
             repeticao_senha = values['repeticao_senha']
+            # Validando senha (Não pode ficar em branco)
             if senha != '' and repeticao_senha != '':
+                # Validando senha (Mínimo 6 caracteres)
                 if int(len(senha)) == 6:
+                    # Validando senha (Os dois campos precisam ter a mesma senha)
                     if senha == repeticao_senha and event == 'Criar Conta':
+                        # Chamando função criar conta e passando os parâmetros
                         criar_conta.criar_conta(nome, sobrenome, cpf, senha, repeticao_senha)
+                        # Deixando os campos em branco novamente
                         window['nome'].update('')
                         window['sobrenome'].update('')
                         window['cpf'].update('')
@@ -156,6 +173,7 @@ while True:
                         sg.Popup('As senhas precisam ser iguais!', font='arial 13', title='Erro')
                 else:
                     sg.Popup('As senha precisar conter 6 dígitos(Números)!', font='arial 13', title='Erro')
+            # Validando criação da conta. Todos os campos precisam ser preenchidos.
             elif nome == '' or sobrenome == '' or cpf == '' or senha == '' or repeticao_senha == '':
                 sg.Popup('Verifique se todos os campos estão preenchidos.', font='arial 13', title='Erro')
 

@@ -25,7 +25,7 @@ def tela_login():
     ]
 
     # Retornando A janela
-    return sg.Window('Caixa Brazesco', layout, size=(500, 400), element_justification='center', finalize=True)
+    return sg.Window('Caixa Brazesco 24h', layout, size=(500, 400), element_justification='center', finalize=True)
 
 
 # Função p/ criar interface da tela principal
@@ -98,7 +98,7 @@ def tela_depositar():
     # Definindo layout
     frame_layout = [
         [sg.Text('Valor:', font='arial 16')],
-        [sg.InputText('', key='valor_deposito', font='arial 16', size=18)],
+        [sg.Text('R$', font='arial 16'), sg.InputText('', key='valor_deposito', font='arial 16', size=14)],
         [sg.Button('Confirmar', font='arial 16'), sg.Button('Cancelar', font='arial 16')]
     ]
 
@@ -120,7 +120,7 @@ def tela_sacar():
     # Definindo layout
     frame_layout = [
         [sg.Text('Valor:', font='arial 16')],
-        [sg.InputText('', key='valor_saque', font='arial 16', size=18)],
+        [sg.Text('R$', font='arial 16'), sg.InputText('', key='valor_saque', font='arial 16', size=14)],
         [sg.Button('Confirmar', font='arial 16'), sg.Button('Cancelar', font='arial 16')]
     ]
 

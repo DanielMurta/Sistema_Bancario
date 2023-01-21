@@ -28,7 +28,7 @@ def criar_conta(nome, sobrenome, cpf, senha, repeticao_senha):
         sg.Popup('ABERTURA DE CONTA COM SUCESSO!'
                  f'\nConta: {mensagem[0]}'
                  f'\nNome: {mensagem[2]}{mensagem[3]}'
-                 f'\nFaça LOGIN e comece a usar a conta.', font='arial 13', title='Erro')
+                 f'\nFaça LOGIN e comece a usar a conta.', font='arial 13', title='Conta Criada')
 
 
 # Função para fazer login
