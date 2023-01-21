@@ -7,82 +7,118 @@ from telas import *
 # Importando função para login e criação de conta
 import criar_conta
 
-
+# Chamando tela login
 tela_login()
 while True:
     window, event, values = sg.read_all_windows()
+    # Armazenando os dados dos campos nas variávels agencia e senha
     agencia = f'{values["agencia"]}-{values["agencia2"]}'
     senha = (values['senha'])
 
+    # Fechar a tela
     if event == sg.WIN_CLOSED:
         break
+    # Fazendo Login
     if event == 'Login':
+        # Implementando exceções (Todos os campos devem ser preenchidos)
         if agencia == '' or senha == '':
+            # Mensagem de ERRO
             sg.Popup('Preencha todos os campos!', title='Erro')
         else:
+            # Armazenando os dados do cliente na variável log.
             log = criar_conta.login(agencia, senha)
+            # Se o log não retornar Falso
             if log:
+                # Chamando as funções Cliente e ContaPoupança com os parãmetros dos dados do cliente na variável log
                 cl = Cliente(log[2], log[3], log[4], log[1], log[1])
-                ct = ContaPoupanca(agencia, senha, cl, saldo=0)
+                ct = ContaPoupanca(agencia, senha, cl, saldo=0)  # Definindo saldo como padrão = 0
+                # Fechando tela login
                 window.close()
+                # Abrindo tela Principal
                 tela_principal(cl, ct)
                 while True:
                     window, event, values = sg.read_all_windows()
                     if event == sg.WIN_CLOSED:
                         exit()
+                    # Saindo da tela Principal e voltando para a tela login
                     if event == 'Sair':
                         window.close()
                         tela_login()
                         break
+                    # Exibindo Extrato
                     if event == 'Exibir Extrato':
+                        # Atualizando dentro do campo extrato
                         window['extrato'].update(f'Nome: {cl.nome, cl.sobrenome}'
                                                  f'\nConta: {ct.agencia}'
                                                  f'\nSaldo: R${ct.saldo:.2f}')
 
+                    # Fazendo depósito
                     if event == 'Depositar':
+                        # Fechando tela Principal
                         window.close()
+                        # Abrindo tela de depósito
                         tela_depositar()
                         while True:
                             window, event, values = sg.read_all_windows()
+                            # Armazenando os dados do campo na variável
                             valor_deposito = values['valor_deposito']
                             if event == sg.WIN_CLOSED:
                                 exit()
+                            # Saindo da tela depósito
                             if event == 'Sair':
                                 window.close()
+                                # Abrindo tela Principal
                                 tela_principal(cl, ct)
                                 break
 
+                            # Cancelado o depósito
                             if event == 'Cancelar':
+                                # Atualiza o campo deixando em branco
                                 window['valor_deposito'].update('')
 
+                            # Confirmando depósito
                             if event == 'Confirmar':
+                                # Validando (O campo não pode estar vazio)
                                 if valor_deposito == '':
                                     sg.Popup('Preencha todos os campos!', title='Erro')
+
                                 else:
+                                    # Caso não esteja vazio, a função depositar da classe conta é chamada
                                     ct.Depositar(float(valor_deposito))
                                     sg.Popup('DEPÓSITO CONCLUÍDO!')
                                     window['valor_deposito'].update('')
 
+                    # Fazendo Saque
                     if event == '   Sacar   ':
+                        # Fechando tela Principal
                         window.close()
+                        # Abrindo tela saque
                         tela_sacar()
                         while True:
                             window, event, values = sg.read_all_windows()
+                            # Armazenando os dados do campo na variável
                             valor_saque = values['valor_saque']
                             if event == sg.WIN_CLOSED:
                                 exit()
+                            # Saindo da tela saque
                             if event == 'Sair':
                                 window.close()
+                                # Abrindo tela principal
                                 tela_principal(cl, ct)
                                 break
 
+                            # Cancelado o saque
                             if event == 'Cancelar':
+                                # Atualiza o campo deixando em branco
                                 window['valor_saque'].update('')
 
+                            # Confirmando Saque
                             if event == 'Confirmar':
+                                # Validando (O campo não pode estar vazio)
                                 if valor_saque == '':
                                     sg.Popup('Preencha todos os campos!', title='Erro')
                                 else:
+                                    # Caso não esteja vazio, a função sacar da classe conta é chamada
                                     ct.sacar(float(valor_saque))
                                     sg.Popup('SAQUE CONCLUÍDO!'
                                              '\nRetire o Dinheiro')
