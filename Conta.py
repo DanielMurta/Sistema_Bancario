@@ -1,5 +1,6 @@
 # Importação do método abstrato
 from abc import ABC, abstractmethod
+import PySimpleGUI as sg
 
 # Criação da classe conta
 class Conta(ABC):
@@ -25,7 +26,7 @@ class ContaPoupanca(Conta):
     # Função para sacar (Atraves do método abstrato)
     def sacar(self, valor):
         if self.saldo < valor:
-            print('Saldo insuficiente')
+            sg.Popup('Saldo insuficiente')
             return
 
         self.saldo -= valor
